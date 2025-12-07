@@ -1,11 +1,11 @@
 const Card = ({ tittle }) => {
 
   return (
-    <div style={{
-      border: '1px solid #4b5362',
+    <div className="card" style={{
+      border: '3px solid #790000ff',
       padding: '20px',
       margin: '10px',
-      backgroundColor: 'red',
+      backgroundColor: 'white',
       borderRadius: '10px',
       minHeight: '100px',
 
