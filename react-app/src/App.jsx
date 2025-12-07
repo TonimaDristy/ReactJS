@@ -7,7 +7,7 @@ const Card = ({ tittle }) => {
 
     console.log(`${tittle} has been liked: ${hasLiked}`);
 
-  });
+  }, [hasLiked]);
 
 
 
