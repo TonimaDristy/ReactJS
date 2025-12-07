@@ -15,7 +15,6 @@ body {
 h2 {
   color: rgb(0, 0, 0);
   text-align: center;
-  margin-bottom: 30px;
   font-size: 45px;
 }
 
@@ -29,4 +28,14 @@ h2 {
 
 }
 
-.card {}
+.card {
+
+  border: 3px solid #790000ff;
+  padding: 20px;
+  margin: 10px;
+  background-color: white;
+  border-radius: 10px;
+  min-height: 100px;
+
+
+}
