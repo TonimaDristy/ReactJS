@@ -1,49 +1,21 @@
-import { useEffect, useState } from "react"
-
-const Card = ({ tittle }) => {
-  const [count, setCount] = useState(0);
-  const [hasLiked, setHasLiked] = useState(false);
-  useEffect(() => {
-
-    console.log(`${tittle} has been liked: ${hasLiked}`);
-
-  }, [hasLiked]);
-
-
-
-  return (
-    <div className="card" onClick={() => setCount(count + 1)}>
-      <h2>{tittle} <br /> {count}</h2>
-
-      <button onClick={() => setHasLiked(!hasLiked)}>
-        {hasLiked ? 'Liked' : 'Like'}
-      </button>
-
-
-
-    </div>
-  )
-}
-
-
-
+import React from 'react';
 
 
 const App = () => {
-
-
   return (
-    <div className="card-container">
+    <main>
+      <div >
+
+        <div className="pattern" />
+        <div className="wrapper" />
+        <header>
+          <h1>Find <span className="text-gradient">Movies</span> You'll Enjoy Without the Hassle</h1>
+        </header>
 
 
-      <Card tittle="Wednesday" rating={5} iscool={true} />
-      <Card tittle="Avatar" />
-      <Card tittle="Star Wars" />
-
-
-
-    </div>
-  )
+      </div>
+    </main>
+  );
 }
 
-export default App
+export default App;
