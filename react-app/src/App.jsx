@@ -1,7 +1,15 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const Card = ({ tittle }) => {
   const [hasLiked, setHasLiked] = useState(false);
+  useEffect(() => {
+
+    console.log(`${tittle} has been liked: ${hasLiked}`);
+
+  });
+
+
+
   return (
     <div className="card" >
       <h2>{tittle}</h2>
