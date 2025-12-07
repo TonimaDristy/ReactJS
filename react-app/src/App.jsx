@@ -1,17 +1,17 @@
+import { useState } from "react"
+
 const Card = ({ tittle }) => {
-
+  const [hasLiked, setHasLiked] = useState(false);
   return (
-    <div className="card" style={{
-      border: '3px solid #790000ff',
-      padding: '20px',
-      margin: '10px',
-      backgroundColor: 'white',
-      borderRadius: '10px',
-      minHeight: '100px',
-
-
-    }} >
+    <div className="card" >
       <h2>{tittle}</h2>
+
+      <button onClick={() => setHasLiked(!hasLiked)}>
+        {hasLiked ? 'Liked' : 'Like'}
+      </button>
+
+
+
     </div>
   )
 }
@@ -21,6 +21,7 @@ const Card = ({ tittle }) => {
 
 
 const App = () => {
+
 
   return (
     <div className="card-container">
