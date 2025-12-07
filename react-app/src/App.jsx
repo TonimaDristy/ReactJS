@@ -17,9 +17,9 @@ const App = () => {
     <div>
       <h2>Functional Arrow Component</h2>
 
-      <Card />
-      <Card />
-      <Card />
+      <Card tittle="Wednesday" />
+      <Card tittle="Avatar" />
+      <Card tittle="Star Wars" />
 
 
 
