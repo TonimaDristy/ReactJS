@@ -39,13 +39,13 @@ const App = () => {
       }
       const data = await response.json();
       //console.log(data);
-      if (data.Response = 'False') {
+      if (data.Response === 'False') {
         setErrorMessage(data.Error || 'Failed to fetch movies');
         setMovieList([]);
         return;
 
       }
-      setMovieList(data.results || [])
+      setMovieList(data.Search || [])
 
     } catch (error) {
       console.error(`Error fetching movies: ${error}`);
@@ -88,7 +88,7 @@ const App = () => {
           ) : (
             <ul>
               {movieList.map((movie) => (
-                <p className="text-white">{movie.title}</p>
+                <p className="text-white" key={movie.imdbID}>{movie.Title}</p>
               ))}
             </ul>
           )}
