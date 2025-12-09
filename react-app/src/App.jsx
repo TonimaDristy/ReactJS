@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Search from './components/Search.jsx'
 
 
 const App = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+
+  }, []);
 
   return (
     <main>
