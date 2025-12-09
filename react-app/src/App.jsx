@@ -17,11 +17,13 @@ const App = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   const fetchMovies = async () => {
     try {
 
     } catch (error) {
-      console.error(`Error fetching movies: error`)
+      console.error(`Error fetching movies: ${error}`)
     }
   }
 
