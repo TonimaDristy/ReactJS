@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Search from './components/Search.jsx'
 
-const API_URL = `https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=${apiKey}`;
+const API_BASE_URL = `https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=${apiKey}`;
+const API_KEY = import.meta.env.VITE_OMDB_API;
+
+const API_OPTIONS = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    //Authorization: `Bearer ${API_KEY}`
+  }
+};
+
 
 const App = () => {
 
