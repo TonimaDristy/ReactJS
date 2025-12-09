@@ -22,6 +22,11 @@ const App = () => {
 
 
   const fetchMovies = async () => {
+    setIsLoading(true);
+    setErrorMessage('');
+
+
+
     try {
       const endpoint = `https://www.omdbapi.com/?s=${encodeURIComponent(searchTerm || "movie")}&apikey=${API_KEY}`;
 
@@ -36,12 +41,17 @@ const App = () => {
       //console.log(data);
       if (data.Response = 'False') {
         setErrorMessage(data.Error || 'Failed to fetch movies');
-      }
+        setMovieList([]);
+        return;
 
+      }
+      setMovieList(data.results || [])
 
     } catch (error) {
       console.error(`Error fetching movies: ${error}`);
       setErrorMessage('Error fetching movies. please try again later. ')
+    } finally {
+      setIsLoading(false);
     }
   }
 
