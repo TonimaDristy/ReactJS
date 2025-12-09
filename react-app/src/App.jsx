@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Search from './components/Search.jsx'
 
-const API_BASE_URL = `https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=${apiKey}`;
+//const API_BASE_URL = `https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=${apiKey}`;
 const API_KEY = import.meta.env.VITE_OMDB_API;
 
 const API_OPTIONS = {
@@ -21,7 +21,9 @@ const App = () => {
 
   const fetchMovies = async () => {
     try {
-      const endpoint = `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
+      const endpoint = `https://www.omdbapi.com/?s=${encodeURIComponent(searchTerm || "movie")}&apikey=${API_KEY}`;
+
+      //const endpoint = `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
       const response = await fetch(endpoint, API_BASE_URL_OPTIONS)
 
       if (!response.ok) {
