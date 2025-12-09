@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Search from './components/Search.jsx'
-import Spinner from './components/spinner.jsx';
+
+import SpinnerComponent from "./components/Spinner.jsx";
 
 //const API_BASE_URL = `https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=${apiKey}`;
 const API_KEY = import.meta.env.VITE_OMDB_API;
@@ -86,7 +87,7 @@ const App = () => {
 
           {isLoading ? (
 
-            <Spinner />
+            <SpinnerComponent />
 
           ) : errorMessage ? (
             <p className="text-red-500">{errorMessage}</p>
