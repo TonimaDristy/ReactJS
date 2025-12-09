@@ -22,11 +22,16 @@ const App = () => {
   const fetchMovies = async () => {
     try {
       const endpoint = `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
+      const response = await fetch(endpoint, API_BASE_URL_OPTIONS)
 
+      if (!response.ok) {
+        throw new Error('Failed to fetch movies');
 
+      }
+      const data = await response.json();
+      console.log(data);
 
-
-
+      //alert(response);
 
     } catch (error) {
       console.error(`Error fetching movies: ${error}`);
