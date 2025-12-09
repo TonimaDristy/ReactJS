@@ -23,7 +23,8 @@ const App = () => {
     try {
 
     } catch (error) {
-      console.error(`Error fetching movies: ${error}`)
+      console.error(`Error fetching movies: ${error}`);
+      setErrorMessage('Error fetching movies. please try again later. ')
     }
   }
 
@@ -46,11 +47,14 @@ const App = () => {
           <h1>
             Find <span className='text-gradient'> Movies </span> You'll Enjoy Without the Hassle
           </h1>
+          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <h2 className="text-white">{searchTerm}</h2>
+
         </header>
+        <section className="all-movies">
+          <h2>All Movies</h2>
+        </section>
 
-        <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-
-        <h2 className="text-white">{searchTerm}</h2>
 
 
       </div>
