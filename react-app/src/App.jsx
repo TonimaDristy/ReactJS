@@ -24,7 +24,7 @@ const App = () => {
       const endpoint = `https://www.omdbapi.com/?s=${encodeURIComponent(searchTerm || "movie")}&apikey=${API_KEY}`;
 
       //const endpoint = `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
-      const response = await fetch(endpoint, API_BASE_URL_OPTIONS)
+      const response = await fetch(endpoint, API_OPTIONS)
 
       if (!response.ok) {
         throw new Error('Failed to fetch movies');
@@ -33,7 +33,7 @@ const App = () => {
       const data = await response.json();
       console.log(data);
 
-      //alert(response);
+
 
     } catch (error) {
       console.error(`Error fetching movies: ${error}`);
@@ -45,7 +45,7 @@ const App = () => {
 
 
   useEffect(() => {
-
+    fetchMovies();
   }, []);
 
   return (
