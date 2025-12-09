@@ -16,8 +16,10 @@ const API_OPTIONS = {
 const App = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
-
   const [errorMessage, setErrorMessage] = useState('');
+  const [movieList, setMovieList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const fetchMovies = async () => {
     try {
@@ -31,8 +33,10 @@ const App = () => {
 
       }
       const data = await response.json();
-      console.log(data);
-
+      //console.log(data);
+      if (data.Response = 'False') {
+        setErrorMessage(data.Error || 'Failed to fetch movies');
+      }
 
 
     } catch (error) {
