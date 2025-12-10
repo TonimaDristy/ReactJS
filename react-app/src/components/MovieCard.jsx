@@ -13,6 +13,13 @@ const MovieCard = ({ movie }) => {
 
             <div className="mt-4">
                 <h3>{Title}</h3>
+
+                <div className="content">
+                    <div className="rating">
+                        <img src="star.svg" alt="Star Icone" />
+                    </div>
+                </div>
+
             </div>
         </div>
 
