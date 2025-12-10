@@ -1,7 +1,7 @@
 import React from "react";
 
 const MovieCard = ({ movie }) => {
-    const { Title, Poster, Year, Type, Ratings } = movie;
+    const { Title, Poster, Year, Type, Ratings, Language } = movie;
 
     // Extract IMDb rating
     const imdbRating = Ratings?.find(r => r.Source === "Internet Movie Database")?.Value;
@@ -18,6 +18,10 @@ const MovieCard = ({ movie }) => {
                     <img src="star.svg" alt="Star Icon" />
                     <p>{imdbRating || 'N/A'}</p>
                 </div>
+
+                <span>•</span>
+                <p className="lang">{Language}</p>
+
             </div>
         </div>
     );
