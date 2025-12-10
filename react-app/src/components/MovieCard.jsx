@@ -1,12 +1,17 @@
 import React from "react";
 
 const MovieCard = ({ movie }) => {
-    const { title, vote_average, poster_path, release_date, original_language } = movie;
+    const { Title, Year, Poster, Type } = movie;
 
     return (
-        <div>
-            <p className="text-white">{title}</p>
+        <div className="movie-card">
+            <img src={Poster} alt={Title} />
+            <h3>{Title}</h3>
+            <p>{Year}</p>
+            <p>{Type}</p>
         </div>
+
+
     );
 };
 
