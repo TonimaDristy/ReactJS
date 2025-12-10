@@ -20,7 +20,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [movieList, setMovieList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
 
   const fetchMovies = async () => {
@@ -55,7 +55,7 @@ const App = () => {
 
       ///////////FINALLY///
     } finally {
-      setIsLoading(true);
+      setIsLoading(false);
     }
   }
 

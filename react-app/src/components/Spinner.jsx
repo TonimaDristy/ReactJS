@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Spinner as FlowbiteSpinner } from "flowbite-react";
 
-const SpinnerComponents = () => {
+const SpinnerComponent = () => {
     return (
         <div className="flex flex-row gap-3">
             <Button>
@@ -16,4 +16,4 @@ const SpinnerComponents = () => {
     );
 };
 
-export default SpinnerComponents;
+export default SpinnerComponent;
