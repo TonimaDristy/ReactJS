@@ -6,11 +6,15 @@ const MovieCard = ({ movie }) => {
     return (
         <div className="movie-card">
             <img src={Poster} alt={Title} />
-            <h3>{Title}</h3>
+
             <p>{Year}</p>
             <p>{Type}</p>
-        </div>
 
+
+            <div className="mt-4">
+                <h3>{Title}</h3>
+            </div>
+        </div>
 
     );
 };
