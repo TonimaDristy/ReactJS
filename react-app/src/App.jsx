@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Search from './components/Search.jsx'
 
 import SpinnerComponent from "./components/Spinner.jsx";
+import MovieCard from './components/MovieCard.jsx';
 
 //const API_BASE_URL = `https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=${apiKey}`;
 const API_KEY = import.meta.env.VITE_OMDB_API;
@@ -94,7 +95,10 @@ const App = () => {
           ) : (
             <ul>
               {movieList.map((movie) => (
-                <p className="text-white" key={movie.imdbID}>{movie.Title}</p>
+                //<p className="text-white" key={movie.imdbID}>{movie.Title}</p>
+                <MovieCard key={movie.imdbID} movie={movie} />
+
+
               ))}
             </ul>
           )}
