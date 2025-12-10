@@ -26,12 +26,19 @@ const App = () => {
   };
 
   // Fetch movies based on search term
-  const fetchMovies = async () => {
+  const fetchMovies = async (query = '') => {
     setIsLoading(true);
     setErrorMessage('');
 
     try {
-      const searchEndpoint = `https://www.omdbapi.com/?s=${encodeURIComponent(searchTerm || 'movie')}&apikey=${API_KEY}`;
+      const searchEndpoint = query
+        ? `https://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${API_KEY}`
+        : `https://www.omdbapi.com/?s=movie&apikey=${API_KEY}`;
+
+
+
+
+
       const response = await fetch(searchEndpoint, API_OPTIONS);
       const data = await response.json();
 
@@ -59,8 +66,8 @@ const App = () => {
 
   // Fetch default movies on mount
   useEffect(() => {
-    fetchMovies();
-  }, []);
+    fetchMovies(searchTerm);
+  }, [searchTerm]);
 
   return (
     <main>
