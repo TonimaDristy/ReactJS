@@ -1,7 +1,7 @@
 import React from "react";
 
 const MovieCard = ({ movie }) => {
-    const { Title, Poster, Year, Type, Ratings, Language } = movie;
+    const { Title, Poster, Year, Type, Ratings, Language, Released } = movie;
 
     // Extract IMDb rating
     const imdbRating = Ratings?.find(r => r.Source === "Internet Movie Database")?.Value;
@@ -21,6 +21,10 @@ const MovieCard = ({ movie }) => {
 
                 <span>•</span>
                 <p className="lang">{Language}</p>
+
+                <span>•</span>
+                <p className="year">{Released || 'N/A'}</p>
+
 
             </div>
         </div>
