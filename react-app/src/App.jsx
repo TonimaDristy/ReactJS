@@ -33,7 +33,7 @@ const App = () => {
     try {
       const endpoint = `https://www.omdbapi.com/?s=${encodeURIComponent(searchTerm || "movie")}&apikey=${API_KEY}`;
 
-      //const endpoint = `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
+
       const response = await fetch(endpoint, API_OPTIONS)
 
       if (!response.ok) {
@@ -41,7 +41,6 @@ const App = () => {
 
       }
       const data = await response.json();
-      //console.log(data);
       if (data.Response === 'False') {
         setErrorMessage(data.Error || 'Failed to fetch movies');
         setMovieList([]);
