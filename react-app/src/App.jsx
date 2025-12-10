@@ -1,120 +1,99 @@
-import React, { useEffect, useState } from 'react'
-import Search from './components/Search.jsx'
-
-import SpinnerComponent from "./components/Spinner.jsx";
+import React, { useEffect, useState } from 'react';
+import Search from './components/Search.jsx';
+import SpinnerComponent from './components/Spinner.jsx';
 import MovieCard from './components/MovieCard.jsx';
 
-//const API_BASE_URL = `https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=${apiKey}`;
 const API_KEY = import.meta.env.VITE_OMDB_API;
 
 const API_OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    //Authorization: `Bearer ${API_KEY}`
-  }
+  },
 };
 
-
 const App = () => {
-
   const [searchTerm, setSearchTerm] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
   const [movieList, setMovieList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
+  // Fetch full details for a single movie by imdbID
+  const fetchMovieDetails = async (imdbID) => {
+    const res = await fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`, API_OPTIONS);
+    const data = await res.json();
+    return data;
+  };
 
+  // Fetch movies based on search term
   const fetchMovies = async () => {
     setIsLoading(true);
     setErrorMessage('');
 
-
-
     try {
-      const endpoint = `https://www.omdbapi.com/?s=${encodeURIComponent(searchTerm || "movie")}&apikey=${API_KEY}`;
-
-
-      const response = await fetch(endpoint, API_OPTIONS)
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch movies');
-
-      }
+      const searchEndpoint = `https://www.omdbapi.com/?s=${encodeURIComponent(searchTerm || 'movie')}&apikey=${API_KEY}`;
+      const response = await fetch(searchEndpoint, API_OPTIONS);
       const data = await response.json();
+
       if (data.Response === 'False') {
-        setErrorMessage(data.Error || 'Failed to fetch movies');
+        setErrorMessage(data.Error || 'No movies found.');
         setMovieList([]);
         return;
-
       }
-      setMovieList(data.Search || [])
 
+      // Fetch full details for each movie
+      const detailedMovies = await Promise.all(
+        data.Search.map(async (movie) => {
+          return await fetchMovieDetails(movie.imdbID);
+        })
+      );
+
+      setMovieList(detailedMovies);
     } catch (error) {
-      console.error(`Error fetching movies: ${error}`);
-      setErrorMessage('Error fetching movies. please try again later. ')
-
-      ///////////FINALLY///
+      console.error('Error fetching movies:', error);
+      setErrorMessage('Error fetching movies. Please try again later.');
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
-
-
-
+  // Fetch default movies on mount
   useEffect(() => {
     fetchMovies();
   }, []);
 
   return (
     <main>
-
       <div className="pattern" />
-
 
       <div className="wrapper">
         <header>
           <img src="./hero.png" alt="Hero Banner" />
           <h1>
-            Find <span className='text-gradient'> Movies </span> You'll Enjoy Without the Hassle
+            Find <span className="text-gradient">Movies</span> You'll Enjoy Without the Hassle
           </h1>
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <h2 className="text-white">{searchTerm}</h2>
-
         </header>
+
         <section className="all-movies">
           <h2>All Movies</h2>
 
           {isLoading ? (
-
             <SpinnerComponent />
-
           ) : errorMessage ? (
             <p className="text-red-500">{errorMessage}</p>
           ) : (
-            <ul>
+            <ul className="movies-grid">
               {movieList.map((movie) => (
-                //<p className="text-white" key={movie.imdbID}>{movie.Title}</p>
                 <MovieCard key={movie.imdbID} movie={movie} />
-
-
               ))}
             </ul>
           )}
-
-
-
-
         </section>
-
-
-
       </div>
-
-
     </main>
+  );
+};
 
-  )
-}
-
-export default App
+export default App;
