@@ -43,10 +43,16 @@ const App = () => {
       const data = await response.json();
 
       if (data.Response === 'False') {
+        if (data.Error === "Too many results.") {
+
+          return;
+        }
+
         setErrorMessage(data.Error || 'No movies found.');
         setMovieList([]);
         return;
       }
+
 
       // Fetch full details for each movie
       const detailedMovies = await Promise.all(
